@@ -16,4 +16,8 @@ export class ItemListComponent implements OnInit {
     this.items = this.itemSvc.getItems();
   }
 
+  onClick(idx: number) {
+    this.itemSvc.removeItem(idx);
+  }
+
 }

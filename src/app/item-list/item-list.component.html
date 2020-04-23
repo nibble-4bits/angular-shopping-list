@@ -1,4 +1,7 @@
-<div *ngFor="let item of items">
+<div *ngFor="let item of items; let i = index">
     <span>{{ item.name }}</span>
-    <button>Erase</button>
+    <span>
+        <button (click)="onClick(i)">Done</button>
+        <button (click)="onClick(i)">Delete</button>
+    </span>
 </div>
