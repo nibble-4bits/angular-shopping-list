@@ -13,6 +13,10 @@ export class ItemService {
     this.items.push(item);
   }
 
+  removeItem(idx: number) {
+    this.items.splice(idx, 1);
+  }
+
   getItems() {
     return this.items;
   }
