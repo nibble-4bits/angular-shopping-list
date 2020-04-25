@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../shared/item';
-import { NgModel } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { ItemService } from '../services/item.service';
 
 @Component({
@@ -9,19 +9,23 @@ import { ItemService } from '../services/item.service';
   styleUrls: ['./item-input.component.scss']
 })
 export class ItemInputComponent implements OnInit {
-  itemName: string;
+  itemForm: FormGroup;
 
-  constructor(private itemSvc: ItemService) { }
+  constructor(private itemSvc: ItemService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.itemForm = this.fb.group({
+      itemName: ''
+    });
   }
 
-  onClick() {
-    this.itemSvc.addItem({
-      name: this.itemName,
+  onSubmit() {
+    const item: Item = {
+      name: this.itemForm.get('itemName').value,
       bought: false
-    });
-    this.itemName = '';
+    };
+    this.itemSvc.addItem(item);
+    this.itemForm.reset();
   }
 
 }

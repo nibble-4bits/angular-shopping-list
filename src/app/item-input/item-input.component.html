@@ -1,2 +1,9 @@
-<input type="text" [(ngModel)]="itemName">
-<button type="button" (click)="onClick()">+</button>
+<form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <mat-label>Item name</mat-label>
+        <input matInput formControlName="itemName" value="" autocomplete="off">
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">
+        <mat-icon>add_circle</mat-icon>
+    </button>
+</form>
